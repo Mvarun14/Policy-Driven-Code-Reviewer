@@ -1,0 +1,31 @@
+version: 1
+
+policies:
+  - name: hot_path_architectural_issue
+    when:
+      category: Performance
+      severity: High
+      fix_scope: Architectural
+      context:
+        hot_path: true
+    action:
+      block_pr: false
+      create_jira: true
+      comment_type: summary
+
+  - name: fixable_high_severity
+    when:
+      severity: High
+      fix_scope: Local
+    action:
+      block_pr: true
+      create_jira: false
+      comment_type: inline
+
+  - name: minor_issue
+    when:
+      severity: Low
+    action:
+      block_pr: false
+      create_jira: false
+      comment_type: inline
